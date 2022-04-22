@@ -1,4 +1,4 @@
-object AppDependencies {
+object ApplicationDependencies {
     private const val appcompat = "androidx.appcompat:appcompat:${ApplicationVersions.appcompat}"
     private const val coreKtx = "androidx.core:core-ktx:${ApplicationVersions.coreKtx}"
     private const val constraintLayout = "androidx.constraintlayout:constraintlayout:${ApplicationVersions.constraintLayout}"

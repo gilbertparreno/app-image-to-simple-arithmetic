@@ -1,6 +1,5 @@
 object ApplicationVersions {
-    const val gradle = "4.0.1"
-    const val kotlin = "1.4.0"
+    const val kotlin = "1.6.10"
     const val coreKtx = "1.7.0"
     const val appcompat = "1.4.1"
     const val constraintLayout = "2.1.3"
