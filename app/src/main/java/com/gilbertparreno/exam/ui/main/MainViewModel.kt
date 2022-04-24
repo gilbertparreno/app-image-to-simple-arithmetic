@@ -1,6 +1,5 @@
 package com.gilbertparreno.exam.ui.main
 
-import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gilbertparreno.exam.core.entities.OperationType
@@ -26,12 +25,12 @@ class MainViewModel @Inject constructor(
 
     val resultEvent = SingleLiveEvent<TaskStatus<ArithmeticExpressionResult>>()
 
-    fun getTextFromBitmap(bitmap: Bitmap) {
+    fun getTextFromInputImage(inputImage: InputImage) {
         viewModelScope.launch(
             coroutineContextProvider = coroutineContextProvider,
             work = {
                 resultEvent.postValue(TaskStatus.loading())
-                val expression = recognizeTextFromBitmap(bitmap).getFirstArithmeticExpression()
+                val expression = recognizeText(inputImage).getFirstArithmeticExpression()
                 expression?.let {
                     performOperation(it)
                 } ?: run {
@@ -47,20 +46,20 @@ class MainViewModel @Inject constructor(
         )
     }
 
-    private suspend fun recognizeTextFromBitmap(bitmap: Bitmap) =
-        suspendCancellableCoroutine<String> { coroutine ->
-            try {
-                val image = InputImage.fromBitmap(bitmap, 0)
-                textRecognizer.process(image)
-                    .addOnSuccessListener { result ->
-                        coroutine.resume(result.text)
-                    }.addOnFailureListener {
-                        coroutine.resumeWithException(it)
-                    }
-            } catch (e: Exception) {
-                coroutine.resumeWithException(e)
-            }
+    private suspend fun recognizeText(
+        inputImage: InputImage
+    ) = suspendCancellableCoroutine<String> { coroutine ->
+        try {
+            textRecognizer.process(inputImage)
+                .addOnSuccessListener { result ->
+                    coroutine.resume(result.text)
+                }.addOnFailureListener {
+                    coroutine.resumeWithException(it)
+                }
+        } catch (e: Exception) {
+            coroutine.resumeWithException(e)
         }
+    }
 
     private fun performOperation(expression: String): ArithmeticExpressionResult {
         val values = expression.split("[/+\\-*]".toRegex()).map { it.toBigDecimal().setScale(2) }
