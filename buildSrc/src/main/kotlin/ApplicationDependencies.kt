@@ -14,6 +14,7 @@ object ApplicationDependencies {
     private const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${ApplicationVersions.lifecycle}"
     private const val lifecycleLivedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${ApplicationVersions.lifecycle}"
     private const val coil = "io.coil-kt:coil:${ApplicationVersions.coil}"
+    private const val mlKitTextRecognition = "com.google.android.gms:play-services-mlkit-text-recognition:${ApplicationVersions.mlKitTextRecognition}"
 
     private const val junit = "junit:junit:${ApplicationVersions.junit}"
     private const val extJUnit = "androidx.test.ext:junit:${ApplicationVersions.extJunit}"
@@ -33,7 +34,8 @@ object ApplicationDependencies {
         lifecycleCommon,
         lifecycleRuntimeKtx,
         lifecycleLivedataKtx,
-        coil
+        coil,
+        mlKitTextRecognition
     )
 
     val kaptLibraries = listOf(kaptDagger)

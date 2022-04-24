@@ -1,4 +1,4 @@
-package com.gilbertparreno.exam
+package com.gilbertparreno.exam.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.gilbertparreno.exam.ArithmeticApplication
+import com.gilbertparreno.exam.R
 import com.gilbertparreno.exam.core.base.BaseActivity
 import com.gilbertparreno.exam.databinding.ActivityMainBinding
 

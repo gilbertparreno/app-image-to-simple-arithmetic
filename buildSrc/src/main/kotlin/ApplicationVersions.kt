@@ -11,6 +11,7 @@ object ApplicationVersions {
     const val coroutinesAndroid = "1.6.0"
     const val lifecycle = "2.4.1"
     const val coil = "1.4.0"
+    const val mlKitTextRecognition = "18.0.0"
 
     // testing
     const val junit = "4.13.2"
