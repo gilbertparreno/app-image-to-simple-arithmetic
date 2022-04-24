@@ -20,6 +20,7 @@ import com.gilbertparreno.exam.core.extensions.launchWithUri
 import com.gilbertparreno.exam.core.extensions.setDebounceClickListener
 import com.gilbertparreno.exam.core.helpers.ToastHelper
 import com.gilbertparreno.exam.databinding.FragmentMainBinding
+import com.google.mlkit.vision.common.InputImage
 
 class MainFragment : BaseFragmentLifeCycle<MainViewModel, FragmentMainBinding>() {
 
@@ -29,7 +30,12 @@ class MainFragment : BaseFragmentLifeCycle<MainViewModel, FragmentMainBinding>()
         if (isSuccess) {
             val file = requireContext().filesDir.getLastModifiedFile()
             val bitmap = BitmapFactory.decodeFile(file?.path)
-            viewModel.getTextFromBitmap(bitmap)
+            viewModel.getTextFromInputImage(InputImage.fromBitmap(bitmap, 0))
+        }
+    }
+    private val gallery = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        if (uri != null) {
+            viewModel.getTextFromInputImage(InputImage.fromFilePath(requireContext(), uri))
         }
     }
 
@@ -72,10 +78,9 @@ class MainFragment : BaseFragmentLifeCycle<MainViewModel, FragmentMainBinding>()
                     viewBinding?.resultText?.text = it.result.toString()
                 }
                 is TaskStatus.Failure -> {
-                    viewBinding?.resultText?.text = it.error.message
                     ToastHelper.showErrorToast(
                         requireContext(),
-                        R.string.generic_error_message
+                        it.error.message ?: getString(R.string.generic_error_message)
                     )
                 }
             }
@@ -94,7 +99,7 @@ class MainFragment : BaseFragmentLifeCycle<MainViewModel, FragmentMainBinding>()
                 }
             }
             is FileSystem -> {
-
+                gallery.launch("image/*")
             }
         }
     }
