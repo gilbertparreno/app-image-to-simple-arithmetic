@@ -1,8 +1,7 @@
 package com.gilbertparreno.exam
 
+import com.gilbertparreno.exam.core.extensions.getFirstArithmeticExpression
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -11,7 +10,20 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun testMultipleExpression() {
+        val test = "hello world110.5+300.75macaroni1+1".getFirstArithmeticExpression()
+        assert(test == "110.5+300.75")
+    }
+
+    @Test
+    fun testSingleExpression() {
+        val test = "hello worldmacaroni1+ 1".getFirstArithmeticExpression()
+        assert(test == "1+1")
+    }
+
+    @Test
+    fun testNoExpression() {
+        val test = "hello worldmacaroni".getFirstArithmeticExpression()
+        assert(test == null)
     }
 }

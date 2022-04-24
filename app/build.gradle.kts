@@ -42,28 +42,28 @@ android {
         create("red_camera") {
             dimension = "version"
             applicationIdSuffix = ".camera"
-            buildConfigField("String", "fileSourceType", "\"camera\"")
+            buildConfigField("String", "FILE_SOURCE_TYPE", "\"camera\"")
             resValue("color", "theme_color_500", "#F44336")
             resValue("color", "theme_color_700", "#D32F2F")
         }
         create("red_filesystem") {
             dimension = "version"
             applicationIdSuffix = ".filesystem"
-            buildConfigField("String", "fileSourceType", "\"filesystem\"")
+            buildConfigField("String", "FILE_SOURCE_TYPE", "\"filesystem\"")
             resValue("color", "theme_color_500", "#F44336")
             resValue("color", "theme_color_700", "#D32F2F")
         }
         create("green_camera") {
             dimension = "version"
             applicationIdSuffix = ".camera"
-            buildConfigField("String", "fileSourceType", "\"camera\"")
+            buildConfigField("String", "FILE_SOURCE_TYPE", "\"camera\"")
             resValue("color", "theme_color_500", "#4CAF50")
             resValue("color", "theme_color_700", "#388E3C")
         }
         create("green_filesystem") {
             dimension = "version"
             applicationIdSuffix = ".filesystem"
-            buildConfigField("String", "fileSourceType", "\"filesystem\"")
+            buildConfigField("String", "FILE_SOURCE_TYPE", "\"filesystem\"")
             resValue("color", "theme_color_500", "#4CAF50")
             resValue("color", "theme_color_700", "#388E3C")
         }
